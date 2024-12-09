@@ -18,10 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:user '])->group(function(){
 
-    Route::get('/Home', [AdminController::class, 'home']);
-
-}); 
+    Route::get('/Home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('user');
 
 require __DIR__.'/auth.php';
